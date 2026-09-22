@@ -1,1 +1,0 @@
-# Entrega-1-Modelo-Conceitual-DER-
