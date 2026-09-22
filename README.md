@@ -1,6 +1,14 @@
 # Entrega 1 — Modelo Conceitual (DER)
 ### Modelagem de um sistema de gestão de informações para uma organização de pequeno porte
 
+## Metadados
+- **Nomes dos alunos e RGM**
+- Guilherme da Silva Lima RGM: 47585277
+- Kaiky hamada RGM: 47210486
+- Lucas Pereira Andre RGM: 46614397
+- Ricardo Arakaki RGM: 46786619
+- Paulo Renato sobral da Silva RGM: 46763902
+
 ---
 ## 1. Caracterização da Organização
 
