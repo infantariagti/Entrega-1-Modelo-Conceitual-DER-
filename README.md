@@ -6,8 +6,8 @@
 - Guilherme da Silva Lima RGM: 47585277
 - Kaiky hamada RGM: 47210486
 - Lucas Pereira Andre RGM: 46614397
-- Ricardo Arakaki RGM: 46786619
 - Paulo Renato sobral da Silva RGM: 46763902
+- Ricardo Arakaki RGM: 46786619
 
 ---
 ## 1. Caracterização da Organização
