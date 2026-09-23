@@ -10,7 +10,7 @@
 - Ricardo Arakaki RGM: 46786619
 
 ---
-## 1. Caracterização da Organização
+## 1. Caracterização da Organização 
 
 - **Nome e natureza da organização:** *Jackson Moto Peças, Oficina Mecânica*
 - **Contexto e porte:** *A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho. 
