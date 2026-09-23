@@ -228,4 +228,4 @@ E. Persistência de Atributos Derivados e Prazos Legais
 | **Trechos rejeitados ou corrigidos** | O código feito em Snippet por engano no critério 7º do esqueleto, Deveria ser uma imagem mas acabou tendo um equívoco da IA e ela fez o código. |
 | **Justificativa da escolha final** | houve poucos ajustes e a IA sempre foi essencial em trabalhos que manualmente levaria mais tempo para ser finalizado. |
 | **Reflexão crítica** | Somente no 7º pois o prompt estava faltando oque ela deveria fazer, mas a IA foi perfeitamente usada.|
----
+—-
