@@ -52,14 +52,14 @@
 ---
 
 ## 4. Regras de Negócio
-- **Regras Operacionais
+- **Regras Operacionais**
 	RN01 - Execução mediante aprovação: Uma Ordem de Serviço (OS) só pode ter seu status alterado para "Em Manutenção" após a autorização e validação explícita do cliente sobre o orçamento gerado.
 	RN02 - Disponibilidade e baixa de estoque: Uma peça só pode ser incluída na OS se houver saldo disponível em estoque. A baixa física/sistêmica ocorre automaticamente no momento do encerramento da OS.
 	RN03 - Vinculação obrigatória: Toda OS deve estar obrigatoriamente associada a um veículo cadastrado, e todo veículo precisa ter um cliente responsável vinculado no sistema.
 	RN04 - Liberação de veículo pós-quitação: O encerramento definitivo da OS e a liberação do veículo só podem ser realizados após o registro da quitação do valor total (Pix, dinheiro ou cartão).
 	RN05 - Alteração de escopo do serviço: Se o mecânico identificar a necessidade de peças ou serviços adicionais durante o conserto, a OS deve entrar em status "Aguardando Nova Aprovação" até a autorização do cliente.
 
-- **Restrições Organizacionais
+- **Restrições Organizacionais**
 	RO01 - Operação enxuta e perfis de acesso: O sistema deve oferecer telas simplificadas e separadas por perfil (a esposa no atendimento/financeiro e o mecânico no pátio), garantindo rapidez para não travar a rotina de apenas duas pessoas.
 	RO02 - Conformidade com CDC (Garantia e Validade): Por exigência legal do Código de Defesa do Consumidor, os orçamentos emitidos pelo sistema devem exibir validade padrão de 10 dias e as OS concluídas devem registrar automaticamente prazo de garantia de 90 dias.
 	RO03 - Política de quitação imediata: Por diretriz da administração, a oficina não trabalha com pagamentos faturados via boleto próprio ou promissórias ("fiado"); o sistema deve restringir o fechamento a meios de pagamento de liquidação imediata ou cartão.
