@@ -293,7 +293,7 @@ oficina.
 	**Conformidade Legal e Defesa do Consumidor (RO02):**
 	- Os atributos derivados validade_orcamento e prazo_garantia são aplicados sobre as datas da ORDEM_SERVICO, garantindo que a oficina não descumpra prazos contratuais de 10 dias de orçamento e 90 dias de garantia previstos no CDC.
 	
-	**Preservação de Histórico de Preços:**
+	**Representação do Valor Total da Ordem de Serviço::**
 	- O atributo preço_total pertence à entidade ORDEM_SERVICO e é classificado como um atributo derivado, pois representa a soma dos valores dos serviços e das peças relacionados à Ordem de Serviço. Dessa forma, o modelo conceitual permite representar o valor total previsto para cada atendimento sem adicionar entidades associativas ao modelo.
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
@@ -308,21 +308,21 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 - Decisão: Modelar CLIENTE e VEICULO como entidades distintas conectadas por um relacionamento 1:N.
 - Por que não unificar em uma única tabela? Se os dados do proprietário fossem armazenados dentro do cadastro da moto, o mesmo cliente com mais de um veículo (ex: uma moto para trabalho e outra para passeio) teria seus dados pessoais (CPF, telefone, endereço) duplicados para cada veículo. A separação garante a 3ª Forma Normal (3FN), elimina redundância cadastral e simplifica a atualização do telefone ou endereço do cliente em um único ponto do sistema.
 	
-**B. Criar Entidades Associativas com Registros Históricos (PECA e SERVICO)**
+**B. Relacionamentos entre ORDEM_SERVICO, PECA e SERVICO**
 - Decisão: Representar os relacionamentos entre ORDEM_SERVICO e PECA e entre ORDEM_SERVICO e SERVICO como relacionamentos N:N.
 - Uma Ordem de Serviço pode utilizar nenhuma, uma ou várias peças, enquanto uma peça pode ser utilizada em diversas Ordens de Serviço. Da mesma forma, uma Ordem de Serviço pode incluir um ou vários serviços, enquanto um serviço pode estar presente em diversas Ordens de Serviço. O valor total da Ordem de Serviço é representado pelo atributo derivado preço_total, obtido a partir dos itens e serviços relacionados à OS.
 
 **C. Escolha de Cardinalidades Específicas**
 - CLIENTE (0,N) <---> (1,1) VEICULO: A cardinalidade mínima 0 do lado do cliente permite que uma pessoa seja cadastrada antes mesmo da entrada física da moto na oficina (ex: orçamento telefônico). A cardinalidade mínima 1 e máxima 1 do lado do veículo garante integridade referencial: nenhuma moto pode existir no banco sem um proprietário responsável.
-- ORDEM_SERVICO (1,N) <---> (0,1) SERVICO: Define-se cardinalidade mínima 1 para serviços, pois não existe sentido operacional em abrir uma Ordem de Serviço em uma oficina sem a prestação de ao menos uma mão de obra ou serviço de diagnóstico.
-- ORDEM_SERVICO (0,N) <---> (0,1) PECA: A cardinalidade mínima é 0 do lado da peça porque existem regulagens e manutenções puramente mecânicas (ex: sangria de freio, regulagem de corrente, limpezas) que utilizam apenas mão de obra, sem consumo de estoque.
+- ORDEM_SERVICO (1,N) <---> (0,N) SERVICO: Define-se cardinalidade mínima 1 para serviços, pois não existe sentido operacional em abrir uma Ordem de Serviço em uma oficina sem a prestação de ao menos uma mão de obra ou serviço de diagnóstico.
+- ORDEM_SERVICO (0,N) <---> (0,N) PECA: A cardinalidade mínima é 0 do lado da peça porque existem regulagens e manutenções puramente mecânicas (ex: sangria de freio, regulagem de corrente, limpezas) que utilizam apenas mão de obra, sem consumo de estoque.
 
 **D. Adequação ao Porte do Negócio vs. Evitar Overengineering**
 - Por que não modelar entidades como MECANICO ou FORNECEDOR nesta etapa? O levantamento de requisitos identificou uma operação enxuta com apenas dois atores ativos (o mecânico/dono e a esposa na recepção). Criar tabelas e telas para gestão de múltiplos mecânicos ou cadastros complexos de fornecedores geraria complexidade desnecessária (overengineering) para o uso diário dos usuários. A modelagem priorizou a agilidade no atendimento sem fechar portas para o futuro: a inclusão de uma chave estrangeira id_mecanico na tabela ORDEM_SERVICO pode ser feita em etapas subsequentes sem exigir reformulação do esquema existente.
 
-**E. Persistência de Atributos Derivados e Prazos Legais**
-- Decisão: Armazenar preço_total, validade_orcamento e prazo_garantia na entidade ORDEM_SERVICO.
-- Defesa: Embora sejam valores logicamente derivados de somatórios e datas, a persistência desses dados no banco de dados assegura a imutabilidade do orçamento aprovado pelo cliente, além de garantir compliance instantâneo com as normas do Código de Defesa do Consumidor (CDC) para emissão de comprovantes e consultas de garantia.
+**E. Representação de Atributos Derivados e Prazos**
+- Decisão: Representar preço_total, validade_orcamento e prazo_garantia como atributos derivados da entidade ORDEM_SERVICO.
+- Defesa: Esses atributos podem ser obtidos a partir de outros dados da Ordem de Serviço. O preço_total é obtido a partir dos valores dos serviços e peças relacionados à OS, enquanto a validade_orcamento e o prazo_garantia são obtidos a partir das respectivas datas do atendimento.
 
 
 ## 9. Uso de Inteligência Artificial
