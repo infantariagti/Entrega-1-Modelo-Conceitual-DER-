@@ -271,7 +271,7 @@ oficina.
 
 	**ORDEM_SERVICO (0,N) <---- contém ----> (0,N) PECA**
 	- Mapeamento: Uma Ordem de Serviço pode utilizar nenhuma, uma ou várias peças. Uma peça cadastrada pode ser utilizada em nenhuma, uma ou várias Ordens de Serviço ao longo do tempo.
-	- Relacionamento Conceitual: N (Muitos para Muitos).
+	- Relacionamento Conceitual: N:M (Muitos para Muitos).
 
 	**ORDEM_SERVICO inclui SERVICO** 
 	- Mapeamento: Uma OS deve ter ao menos um serviço registrado (ou múltiplos). Um serviço do catálogo pode ser executado em várias OSs.
@@ -279,7 +279,7 @@ oficina.
 
 	**ORDEM_SERVICO (1,N) <---- possui ----> (0,N) SERVICO**
   	- Mapeamento: Uma Ordem de Serviço deve possuir pelo menos um serviço registrado, podendo possuir vários. Um serviço do catálogo pode ser utilizado em nenhuma, uma ou várias Ordens de Serviço.
-	- Relacionamento Conceitual: N (Muitos para Muitos).
+	- Relacionamento Conceitual: N:M (Muitos para Muitos).
 
 - **Restrições e Políticas Organizacionais Aplicadas ao Modelo**
 
