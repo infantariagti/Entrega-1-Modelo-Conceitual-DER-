@@ -68,53 +68,63 @@
 ---
 
   ## 5. Dicionário de Dados Conceitual (Preliminar)
-	Entidade: CLIENTE
-	Armazena as informações dos proprietários das motos atendidas na oficina.
-	Atributo		Descrição		Regra de negócio associada
-	id_cliente		Identificador único do cliente no sistema		Obrigatorio, Chave Primária (PK), Gerado automaticamente pelo sistema.
-	nome		Nome completo do cliente		Obrigatorio. Exemplo fictício: "Carlos Eduardo Silva".
-	cpf		Cadastro de Pessoa Física do cliente		Obrigatorio, Único, Formato válido (11 dígitos). Restrição de privacidade (RO04 - LGPD). Exemplo fictício: "123.456.789-00".
-	telefone		Número de telefone/WhatsApp para contato		Obrigatorio. Usado para validação de orçamentos e avisos de conclusão de serviço. Exemplo fictício: "(11) 98765-4321".
-	endereco		Logradouro e bairro do cliente		Opcional. Registro complementar para cadastro. Exemplo fictício: "Rua das Flores, 123 - Centro".
-	Entidade: VEICULO (Moto)
-	Armazena os dados dos veículos cadastrados e vinculados aos clientes.
-	Atributo		Descrição		Regra de negócio associada
-	placa		Placa de identificação da moto		Obrigatorio, Chave Primária (PK). Deve seguir o padrão antigo (AAA-1234) ou Mercosul (ABC1D23). Vinculação obrigatória a um cliente (RN03). Exemplo fictício: "ABC-1D23".
-	modelo		Modelo da motocicleta		Obrigatorio. Exemplo fictício: "CG 160 Titan".
-	marca		Fabricante da moto		Obrigatorio. Exemplo fictício: "Honda".
-	ano		Ano de fabricação do veículo		Obrigatorio. Numérico inteiro de 4 dígitos. Exemplo fictício: "2021".
-	cor		Cor predominante do veículo		Obrigatorio. Exemplo fictício: "Vermelha".
-	km_atual		Quilometragem registrada no momento da entrada		Obrigatorio. Deve ser um número inteiro maior ou igual a zero.
-	Entidade: ORDEM_SERVICO
-	Entidade central do sistema, responsável por registrar o ciclo de atendimento e manutenção da moto.
-	Atributo		Descrição		Regra de negócio associada
-	numero_os		Código identificador da Ordem de Serviço		Obrigatorio, Chave Primária (PK), Gerado automaticamente.
-	data_entrada		Data e hora em que a moto deu entrada na oficina		Obrigatorio. Preenchimento automático no momento do cadastro.
-	data_previsao		Data estimada para conclusão dos serviços		Obrigatorio. Deve ser igual ou posterior à data_entrada.
-	data_saida		Data e hora do encerramento e entrega da moto		Opcional na abertura. Preenchimento obrigatório no momento da quitação (RN04).
-	status_os		Estado atual da Ordem de Serviço no fluxo de trabalho		Obrigatorio. Orçamento aceito: "Aguardando Aprovação", "Aprovada", "Em Manutenção" (RN01), "Aguardando Nova Aprovação" (RN05), "Pronta", "Entregue".
-	defeito_relatado		Descrição do problema informado pelo cliente		Obrigatorio. Preenchido pela recepcionista/esposa no atendimento.
-	diagnostico_tecnico		Avaliação detalhada das causas efetuada pelo mecânico		Opcional na abertura. Obrigatorio para emissão do orçamento.
-	Preço_total		Soma do preço total das peças e dos serviços prestados		Obrigatorio, Calculado automaticamente. Deve ser maior ou igual a zero.
-	forma_pagamento		Meio utilizado para a quitação total 		Preenchimento obrigatório no fechamento da OS. pagamentos permitidos: "Pix", "Dinheiro", "Cartão de Débito", "Cartão de Crédito". Proibido uso de fiado/promissórias (RO03).
-	validade_orcamento		Data limite de validade dos preços propostos		Calculado automaticamente (data_entrada + 10 dias), conforme RO02 (CDC).
-	prazo_garantia		Período legal de garantia do serviço prestado		Preenchido automaticamente com 90 dias a partir da data_saida, conforme RO02 (CDC).
-	Entidade: PECA
-	Registra o inventário de peças e insumos mantidos na oficina.
-	Atributo		Descrição		Regra de negócio associada
-	id_item_peca		Código identificador do item de estoque		Obrigatorio, Chave Primária (PK), Gerado automaticamente.
-	descricao_peca		Nome ou especificação técnica da peça		Obrigatorio. Exemplo fictício: "Óleo de Motor 10W30 1L".
-	codigo_referencia		Código do fabricante ou referência comercial		Opcional. Exemplo fictício: "MOB-10W30-1L".
-	preço_custo		Preço pago pela oficina na aquisição do produto		Obrigatorio. Numérico positivo.
-	preço_venda		Preço cobrado do cliente na OS		Obrigatorio. Deve ser estritamente maior que o preço_custo.
-	qtd_estoque		Quantidade física disponível na oficina		Obrigatorio. Inteiro positivo ou zero. Inclusão na OS sujeita à disponibilidade (RN02).
 
-	Entidade: SERVICO
-	Catálogo de mão de obra prestada pelo mecânico.
-	Atributo		Descrição		Regra de negócio associada
-	id_servico		Código identificador da modalidade de serviço		Obrigatorio, Chave Primária (PK), Gerado automaticamente.
-	nome_servico		Nome descritivo da atividade técnica		Obrigatorio. Exemplo fictício: "Troca de Kit Relação".
-	preço_padrao		Preço base sugerido para a execução do serviço		Obrigatorio. Numérico maior que zero.
+- **Entidade CLIENTE:** Armazena as informações dos proprietários das motos atendidas na 
+oficina.
+
+| Atributo | Descrição | Regra de negócio associada |	
+| -------- | -------- |	-------- |	
+| id_cliente | Identificador único do cliente no sistema | Obrigatorio, Chave Primária (PK), Gerado automaticamente pelo sistema |	
+| nome | Nome completo do cliente |	Obrigatorio. Exemplo fictício: "Carlos Eduardo Silva". |	
+| cpf | Cadastro de Pessoa Física do cliente | Obrigatorio, Único, Formato válido (11 dígitos). Restrição de privacidade (RO04 - LGPD). Exemplo fictício: "123.456.789-00".|
+| telefone | Número de telefone/WhatsApp para contato | Obrigatorio. Usado para validação de orçamentos e avisos de conclusão de serviço. Exemplo fictício: "(11) 98765-4321".|
+| endereco | Logradouro e bairro do cliente | Opcional. Registro complementar para cadastro. Exemplo fictício: "Rua das Flores, 123 - Centro".|
+
+- **Entidade VEICULO (Moto):**	Armazena os dados dos veículos cadastrados e vinculados aos clientes.
+  
+| Atributo | Descrição | Regra de negócio associada |	
+| -------- | -------- |	-------- |				
+|placa | Placa de identificação da moto|Obrigatorio, Chave Primária (PK). Deve seguir o padrão antigo (AAA-1234) ou Mercosul (ABC1D23). Vinculação obrigatória a um cliente (RN03). Exemplo fictício: "ABC-1D23".|
+|modelo|Modelo da motocicleta|Obrigatorio. Exemplo fictício: "CG 160 Titan".|
+|marca|Fabricante da moto|Obrigatorio. Exemplo fictício: "Honda".|
+|ano|Ano de fabricação do veículo|Obrigatorio. Numérico inteiro de 4 dígitos. Exemplo fictício: "2021".|
+|cor|Cor predominante do veículo|Obrigatorio. Exemplo fictício: "Vermelha".|
+|km_atual|Quilometragem registrada no momento da entrada|Obrigatorio. Deve ser um número inteiro maior ou igual a zero.|
+
+- **Entidade ORDEM_SERVICO:** Entidade central do sistema, responsável por registrar o ciclo de atendimento e manutenção da moto.
+
+| Atributo | Descrição | Regra de negócio associada |	
+| -------- | -------- |	-------- |				
+|numero_os|Código identificador da Ordem de Serviço|Obrigatorio, Chave Primária (PK), Gerado automaticamente.|
+|data_entrada|Data e hora em que a moto deu entrada na oficina|Obrigatorio. Preenchimento automático no momento do cadastro.|
+|data_previsao|Data estimada para conclusão dos serviços|Obrigatorio. Deve ser igual ou posterior à data_entrada.|
+|data_saida|Data e hora do encerramento e entrega da moto|Opcional na abertura. Preenchimento obrigatório no momento da quitação (RN04).|
+|status_os|Estado atual da Ordem de Serviço no fluxo de trabalho|Obrigatorio. Orçamento aceito: "Aguardando Aprovação", "Aprovada", "Em Manutenção" (RN01), "Aguardando Nova Aprovação" (RN05), "Pronta", "Entregue".|
+|defeito_relatado|Descrição do problema informado pelo cliente|Obrigatorio. Preenchido pela recepcionista/esposa no atendimento.|
+|diagnostico_tecnico|Avaliação detalhada das causas efetuada pelo mecânico|Opcional na abertura. Obrigatorio para emissão do orçamento.|
+|Preço_total|Soma do preço total das peças e dos serviços prestados|Obrigatorio, Calculado automaticamente. Deve ser maior ou igual a zero.|
+|forma_pagamento|Meio utilizado para a quitação total|Preenchimento obrigatório no fechamento da OS. pagamentos permitidos: "Pix", "Dinheiro", "Cartão de Débito", "Cartão de Crédito". Proibido uso de fiado/promissórias (RO03).|
+|validade_orcamento|Data limite de validade dos preços propostos|Calculado automaticamente (data_entrada + 10 dias), conforme RO02 (CDC).|
+|prazo_garantia|Período legal de garantia do serviço prestado|Preenchido automaticamente com 90 dias a partir da data_saida, conforme RO02 (CDC).|
+	
+- **Entidade PECA:** Registra o inventário de peças e insumos mantidos na oficina.
+	
+| Atributo | Descrição | Regra de negócio associada |	
+| -------- | -------- |	-------- |	
+|id_item_peca|Código identificador do item de estoque|Obrigatorio, Chave Primária (PK), Gerado automaticamente.|
+|descricao_peca|Nome ou especificação técnica da peça|Obrigatorio. Exemplo fictício: "Óleo de Motor 10W30 1L".|
+|codigo_referencia|Código do fabricante ou referência comercial|Opcional. Exemplo fictício: "MOB-10W30-1L".|
+|preço_custo|Preço pago pela oficina na aquisição do produto|Obrigatorio. Numérico positivo.|
+|preço_venda|Preço cobrado do cliente na OS|Obrigatorio.Deve ser estritamente maior que o preço_custo.|
+|qtd_estoque|Quantidade física disponível na oficina|Obrigatorio. Inteiro positivo ou zero. Inclusão na OS sujeita à disponibilidade (RN02).|
+
+- **Entidade SERVICO:** Catálogo de mão de obra prestada pelo mecânico.
+
+| Atributo | Descrição | Regra de negócio associada |	
+| -------- | -------- |	-------- |	
+|id_servico|Código identificador da modalidade de serviço|Obrigatorio, Chave Primária (PK), Gerado automaticamente.|
+|nome_servico|Nome descritivo da atividade técnica|Obrigatorio. Exemplo fictício: "Troca de Kit Relação".|
+|preço_padrao|Preço base sugerido para a execução do serviço|Obrigatorio. Numérico maior que zero.|
 
 ---
 
