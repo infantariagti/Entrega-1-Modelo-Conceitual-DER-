@@ -294,7 +294,7 @@ oficina.
 	- Os atributos derivados validade_orcamento e prazo_garantia são aplicados sobre as datas da ORDEM_SERVICO, garantindo que a oficina não descumpra prazos contratuais de 10 dias de orçamento e 90 dias de garantia previstos no CDC.
 	
 	**Preservação de Histórico de Preços:**
-	- Os atributos preço_unitario nas entidades associativas PECA e SERVICO gravam o valor exato cobrado na data do atendimento. Isso garante que reajustes futuros nos atributos preço_venda (da tabela PECA) ou preço_padrao (da tabela SERVICO) não alterem o valor total de ordens de serviço passadas.
+	- O atributo preço_total pertence à entidade ORDEM_SERVICO e é classificado como um atributo derivado, pois representa a soma dos valores dos serviços e das peças relacionados à Ordem de Serviço. Dessa forma, o modelo conceitual permite representar o valor total previsto para cada atendimento sem adicionar entidades associativas ao modelo.
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
 Este diagrama representa o modelo conceitual do banco de dados da oficina mecânica, estruturado para garanitir integridade referencial, histórico de transações e facilidade de expansão.
