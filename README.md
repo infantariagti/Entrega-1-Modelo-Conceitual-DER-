@@ -14,7 +14,7 @@
 
 - **Nome e natureza da organização:** *Jackson Moto Peças, Oficina Mecânica*
 - **Contexto e porte:** *A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho. 
-- **Problemas e necessidades identificados:** *Ausência de comunicação flexível entre funcionário e cliente e agendamentos a desornados, necessitando de um suporte de controle para gerenciamento da fila de espera dos clientes e seus veículos. *
+- **Problemas e necessidades identificados:** *Ausência de comunicação flexível entre funcionário e cliente, necessitando de um suporte de controle para gerenciamento da fila de espera dos clientes e seus veículos. *
 - **Justificativa da escolha:** *notável que maioria dos casos a comunicação do mecânico e o cliente é limitada, devido ao excesso e escasso tempo do mecânico para manusear seu tempo com agendas, o objetivo é equilibrar o atendimento de forma que o cliente consiga fazer um autoatendimento  enquanto reduz o trabalho do mecânico de parar de trabalhar em outro veículo para prestar atenção ao novo cliente e seu problema.*
 - **Evidências da organização:** Av. Primavera de Caiena, 28 - Parque Santa Madalena, São Paulo - SP, 03981-010 - 11 96067-0539 - Jackson 			
 <img width="273" height="383" alt="image" src="https://github.com/user-attachments/assets/c4777c83-5072-4184-bad4-bc0c10611013" />
@@ -163,23 +163,25 @@ SERVICO	id_servico	Identificador (Chave Primária), Simples, Monovalorado
 	preço_padrao	Atômico/Simples, Monovalorado, Obrigatório
 
 6.3. Relacionamentos Pertinentes e Cardinalidades
+
 	CLIENTE possui VEICULO
 	Mapeamento: Um cliente pode possuir uma ou várias motos cadastradas na oficina, mas cada moto cadastrada pertence obrigatoriamente a apenas um cliente.
 	Cardinalidade: CLIENTE (0,N) <---- possui ----> (1,1) VEICULO
-
 	VEICULO gera ORDEM_SERVICO
 	Mapeamento: Uma moto cadastrada pode passar por diversas Ordens de Serviço ao longo do tempo (ou nenhuma se acabou de ser cadastrada). Toda OS refere-se obrigatoriamente a uma única moto.
 	Cardinalidade: VEICULO (0,N) <---- gera ----> (1,1) ORDEM_SERVICO
 	ORDEM_SERVICO contém PECA 
 	Mapeamento: Uma OS pode utilizar zero ou várias peças. Uma peça cadastrada pode ser usada em várias OSs ao longo do tempo.
 	Relacionamento Conceitual: N:M (Muitos para Muitos).
-	Decomposição Física/Associativa:
-	ORDEM_SERVICO (1,1) <---- possui ----> (0,N) PECA
+	ORDEM_SERVICO (0,N) <---- contém ----> (0,N) PECA
+	Mapeamento: Uma Ordem de Serviço pode utilizar nenhuma, uma ou várias peças. Uma peça cadastrada pode ser utilizada em nenhuma, uma ou várias Ordens de Serviço ao longo do tempo.
+	Relacionamento Conceitual: N (Muitos para Muitos).
 	ORDEM_SERVICO inclui SERVICO 
 	Mapeamento: Uma OS deve ter ao menos um serviço registrado (ou múltiplos). Um serviço do catálogo pode ser executado em várias OSs.
 	Relacionamento Conceitual: N:M (Muitos para Muitos).
-	Decomposição Física/Associativa:
-	ORDEM_SERVICO (1,1) <---- possui ----> (1,N) SERVICO
+	ORDEM_SERVICO (1,N) <---- possui ----> (0,N) SERVICO
+	Mapeamento: Uma Ordem de Serviço deve possuir pelo menos um serviço registrado, podendo possuir vários. Um serviço do catálogo pode ser utilizado em nenhuma, uma ou várias Ordens de Serviço.
+	Relacionamento Conceitual: N (Muitos para Muitos).
 
 6.4. Restrições e Políticas Organizacionais Aplicadas ao Modelo
 	Integridade Referencial e Proteção de Dados (RN03 / RNF03):
