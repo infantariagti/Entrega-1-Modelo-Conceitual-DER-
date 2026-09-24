@@ -47,7 +47,7 @@
 
 **Finalização e entrega:** Conferência do serviço, pagamento e devolução da motocicleta ao cliente.
 
-**Fluxogramas:* 
+**Fluxogramas:**
 
 <img width="305" height="1190" alt="image" src="https://github.com/user-attachments/assets/66076bf5-f5b3-4f81-9cd6-5c6b703e1b49" />
 
