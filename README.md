@@ -314,8 +314,8 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 
 **C. Escolha de Cardinalidades Específicas**
 - CLIENTE (0,N) <---> (1,1) VEICULO: A cardinalidade mínima 0 do lado do cliente permite que uma pessoa seja cadastrada antes mesmo da entrada física da moto na oficina (ex: orçamento telefônico). A cardinalidade mínima 1 e máxima 1 do lado do veículo garante integridade referencial: nenhuma moto pode existir no banco sem um proprietário responsável.
-- ORDEM_SERVICO (1,N) <---> (1,1) SERVICO: Define-se cardinalidade mínima 1 para serviços, pois não existe sentido operacional em abrir uma Ordem de Serviço em uma oficina sem a prestação de ao menos uma mão de obra ou serviço de diagnóstico.
-- ORDEM_SERVICO (0,N) <---> (1,1) PECA: A cardinalidade mínima é 0 do lado da peça porque existem regulagens e manutenções puramente mecânicas (ex: sangria de freio, regulagem de corrente, limpezas) que utilizam apenas mão de obra, sem consumo de estoque.
+- ORDEM_SERVICO (1,N) <---> (0,1) SERVICO: Define-se cardinalidade mínima 1 para serviços, pois não existe sentido operacional em abrir uma Ordem de Serviço em uma oficina sem a prestação de ao menos uma mão de obra ou serviço de diagnóstico.
+- ORDEM_SERVICO (0,N) <---> (0,1) PECA: A cardinalidade mínima é 0 do lado da peça porque existem regulagens e manutenções puramente mecânicas (ex: sangria de freio, regulagem de corrente, limpezas) que utilizam apenas mão de obra, sem consumo de estoque.
 
 **D. Adequação ao Porte do Negócio vs. Evitar Overengineering**
 - Por que não modelar entidades como MECANICO ou FORNECEDOR nesta etapa? O levantamento de requisitos identificou uma operação enxuta com apenas dois atores ativos (o mecânico/dono e a esposa na recepção). Criar tabelas e telas para gestão de múltiplos mecânicos ou cadastros complexos de fornecedores geraria complexidade desnecessária (overengineering) para o uso diário dos usuários. A modelagem priorizou a agilidade no atendimento sem fechar portas para o futuro: a inclusão de uma chave estrangeira id_mecanico na tabela ORDEM_SERVICO pode ser feita em etapas subsequentes sem exigir reformulação do esquema existente.
