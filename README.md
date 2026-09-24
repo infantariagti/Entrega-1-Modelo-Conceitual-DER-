@@ -166,6 +166,7 @@ oficina.
 |preço_custo|Preço pago pela oficina na aquisição do produto|Obrigatorio. Numérico positivo.|
 |preço_venda|Preço cobrado do cliente na OS|Obrigatorio.Deve ser estritamente maior que o preço_custo.|
 |qtd_estoque|Quantidade física disponível na oficina|Obrigatorio. Inteiro positivo ou zero. Inclusão na OS sujeita à disponibilidade (RN02).|
+|estoque_minimo|Quantidade minima disponível na oficina para controle de estoque|Obrigatorio. Inteiro positivo ou zero.|
 
 - **Entidade SERVICO:** Catálogo de mão de obra prestada pelo mecânico.
 
